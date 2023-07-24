@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <p:commandButton value="CREAR" update=":form:datos" actionListener="#{tipoRepuestoBean.reinstanciar}" oncomplete="PF('dlg2').show();" />
+
+            <p:dataTable var="item" value="#{tipoRepuestoBean.lista}">
+                <p:column headerText="ID">
+                    <h:outputText value="#{item.pkId}" />
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{item.nombre}" />
+                </p:column>
+            </p:dataTable>
+            <p:dialog header="Procesando" widgetVar="dlg2" minHeight="150" width="400" showEffect="fade" modal="true">
+                <h:panelGrid id="datos" columns="1">
+                    <p:panelGrid columns="2">
+                        <h:outputText value="NOMBRE" />
+                        <p:inputText value="#{tipoRepuestoBean.objeto.nombre}" />
+                        <h:outputText value="DESCRIPCIÓN" />
+                        <p:inputText value="#{tipoRepuestoBean.objeto.descripcion}" />
+                    </p:panelGrid>
+                    <p:panelGrid columns="2">
+                        <p:commandButton type="button" icon="pi pi-external-link" value="#{tipoRepuestoBean.tipoAccion eq 1 ?'GRABAR':''}" process="@this"  update=":form" action="#{tipoRepuestoBean.procesar()}" onclick="PF('dlg2').hide();" />
+                        <p:commandButton value="CANCELAR" type="button" icon="pi pi-external-link" onclick="PF('dlg2').hide();" />
+                    </p:panelGrid>
+                </h:panelGrid>
+            </p:dialog>
+        </h:form>
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+    </h:body>
+</html>
+
