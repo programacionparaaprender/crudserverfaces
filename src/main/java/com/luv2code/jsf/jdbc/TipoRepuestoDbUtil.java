@@ -133,6 +133,30 @@ public class TipoRepuestoDbUtil {
 		}
 	}
 
+	public void addTipoRepuesto(TipoRepuesto tipoRepuesto) throws Exception {
+
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+
+		try {
+			myConn = getConnection();
+
+			String sql = "insert into tipo_repuesto (nombre, descripcion, fecha_registro) values (?, ?, getdate())";
+
+			myStmt = myConn.prepareStatement(sql);
+
+			// set params
+			myStmt.setString(1, tipoRepuesto.getNombre());
+			myStmt.setString(2, tipoRepuesto.getDescripcion());
+			
+			myStmt.execute();			
+		}
+		finally {
+			close (myConn, myStmt);
+		}
+		
+	}
+	
 	public void addStudent(Student theStudent) throws Exception {
 
 		Connection myConn = null;

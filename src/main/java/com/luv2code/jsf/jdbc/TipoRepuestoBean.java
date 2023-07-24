@@ -59,10 +59,9 @@ public class TipoRepuestoBean implements Serializable{
         objeto = new TipoRepuesto();
     }
     
-    public void procesar(){
+    public void procesar() throws Exception{
         //Crear
-        objeto.setFechaRegistro(new Date());
-        //this.tipoRepuestoFacade.create(objeto);
+        tipoRepuestoDbUtil.addTipoRepuesto(objeto);
     }
     
 }

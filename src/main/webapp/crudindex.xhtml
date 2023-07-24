@@ -27,9 +27,7 @@
                         <p:inputText value="#{tipoRepuestoBean.objeto.nombre}" />
                         <h:outputText value="DESCRIPCIÓN" />
                         <p:inputText value="#{tipoRepuestoBean.objeto.descripcion}" />
-                    </p:panelGrid>
-                    <p:panelGrid columns="2">
-                        <p:commandButton type="button" icon="pi pi-external-link" value="#{tipoRepuestoBean.tipoAccion eq 1 ?'GRABAR':''}" process="@this"  update=":form" action="#{tipoRepuestoBean.procesar()}" onclick="PF('dlg2').hide();" />
+                        <p:commandButton value="#{tipoRepuestoBean.tipoAccion eq 1 ?'GRABAR':''}" update=":form" actionListener="#{tipoRepuestoBean.procesar()}" oncomplete="PF('dlg2').hide();" />
                         <p:commandButton value="CANCELAR" type="button" icon="pi pi-external-link" onclick="PF('dlg2').hide();" />
                     </p:panelGrid>
                 </h:panelGrid>
