@@ -59,9 +59,18 @@ public class TipoRepuestoBean implements Serializable{
         objeto = new TipoRepuesto();
     }
     
+    public void seleccionarItem(int pkId) throws Exception {
+    	objeto = tipoRepuestoDbUtil.getTipoRepuesto(pkId);
+    }
+    
     public void procesar() throws Exception{
-        //Crear
-        tipoRepuestoDbUtil.addTipoRepuesto(objeto);
+        if(tipoAccion == 1) {
+        	//Crear
+            tipoRepuestoDbUtil.addTipoRepuesto(objeto);
+        }else {
+        	//Actualizar
+            tipoRepuestoDbUtil.actualizarTipoRepuesto(objeto);
+        }
     }
     
 }

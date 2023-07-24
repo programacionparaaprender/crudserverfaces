@@ -19,6 +19,18 @@
                 <p:column headerText="Nombre">
                     <h:outputText value="#{item.nombre}" />
                 </p:column>
+                <p:column headerText="Descripcion">
+                    <h:outputText value="#{item.descripcion}" />
+                </p:column>
+                <p:column headerText="OPS">
+                    <p:panelGrid columns="2">
+                        <p:commandButton 
+                        	value="EDITAR" 
+                        	update=":form:datos" 
+                        	actionListener="#{tipoRepuestoBean.seleccionarItem(item.pkId)}" 
+                        	oncomplete="PF('dlg2').show();" />
+                     </p:panelGrid>
+                </p:column>
             </p:dataTable>
             <p:dialog header="Procesando" widgetVar="dlg2" minHeight="150" width="400" showEffect="fade" modal="true">
                 <h:panelGrid id="datos" columns="1">
@@ -27,7 +39,11 @@
                         <p:inputText value="#{tipoRepuestoBean.objeto.nombre}" />
                         <h:outputText value="DESCRIPCIÓN" />
                         <p:inputText value="#{tipoRepuestoBean.objeto.descripcion}" />
-                        <p:commandButton value="#{tipoRepuestoBean.tipoAccion eq 1 ?'GRABAR':''}" update=":form" actionListener="#{tipoRepuestoBean.procesar()}" oncomplete="PF('dlg2').hide();" />
+                        <p:commandButton 
+                        	value="#{tipoRepuestoBean.tipoAccion eq 1 ?'GRABAR':tipoRepuestoBean.tipoAccion eq 2 ?'EDITAR':''}" 
+                        	update=":form" 
+                        	actionListener="#{tipoRepuestoBean.procesar()}" 
+                        	oncomplete="PF('dlg2').hide();" />
                         <p:commandButton value="CANCELAR" type="button" icon="pi pi-external-link" onclick="PF('dlg2').hide();" />
                     </p:panelGrid>
                 </h:panelGrid>
