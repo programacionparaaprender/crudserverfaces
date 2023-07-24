@@ -180,6 +180,20 @@ public class TipoRepuestoDbUtil {
 		}
 	}
 
+	public void eliminarTipoRepuesto(int pkId) throws Exception {
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		try {
+			myConn = getConnection();
+			String sql = "delete from tipo_repuesto  WHERE pk_id=" + pkId;
+			myStmt = myConn.prepareStatement(sql);
+			myStmt.execute();			
+		}
+		finally {
+			close (myConn, myStmt);
+		}
+	}
+	
 	public void actualizarTipoRepuesto(TipoRepuesto tipoRepuesto) throws Exception {
 
 		Connection myConn = null;

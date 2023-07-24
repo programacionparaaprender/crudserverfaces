@@ -32,6 +32,7 @@ public class TipoRepuestoBean implements Serializable{
         reinstanciar();
         tiporepuestos = new java.util.LinkedList<TipoRepuesto>();
         tipoRepuestoDbUtil = TipoRepuestoDbUtil.getInstance();
+        tiporepuestos = tipoRepuestoDbUtil.getTipoRepuestos();
 	}
     
     public List<TipoRepuesto> getLista() throws Exception{
@@ -56,11 +57,17 @@ public class TipoRepuestoBean implements Serializable{
     
     public void reinstanciar(){
         //Crear
+    	tipoAccion = 1;
         objeto = new TipoRepuesto();
     }
     
     public void seleccionarItem(int pkId) throws Exception {
+    	tipoAccion = 2;
     	objeto = tipoRepuestoDbUtil.getTipoRepuesto(pkId);
+    }
+    
+    public void eliminarItem(int pkId) throws Exception{
+        tipoRepuestoDbUtil.eliminarTipoRepuesto(pkId);
     }
     
     public void procesar() throws Exception{

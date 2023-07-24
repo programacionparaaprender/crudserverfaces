@@ -26,9 +26,13 @@
                     <p:panelGrid columns="2">
                         <p:commandButton 
                         	value="EDITAR" 
-                        	update=":form:datos" 
+                        	update=":form" 
                         	actionListener="#{tipoRepuestoBean.seleccionarItem(item.pkId)}" 
                         	oncomplete="PF('dlg2').show();" />
+                        <p:commandButton 
+                        	value="ELIMINAR" 
+                        	update=":form" 
+                        	actionListener="#{tipoRepuestoBean.eliminarItem(item.pkId)}" />
                      </p:panelGrid>
                 </p:column>
             </p:dataTable>
